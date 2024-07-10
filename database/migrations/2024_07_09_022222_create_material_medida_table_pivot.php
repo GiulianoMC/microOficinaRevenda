@@ -11,11 +11,11 @@ class CreateMaterialMedidaTablePivot extends Migration
         Schema::create('material_medida', function (Blueprint $table) {
             $table->unsignedInteger('material_id');
 
-            $table->foreign('material_id', 'material_id_fk_483482')->references('id')->on('material')->onDelete('cascade');
+            $table->foreign('material_id', 'material_id_fk_483482')->references('id')->on('materiais')->onDelete('cascade');
 
             $table->unsignedInteger('medida_id');
 
-            $table->foreign('medida_id', 'medida_id_fk_483482')->references('id')->on('medida')->onDelete('cascade');
+            $table->foreign('medida_id', 'medida_id_fk_483482')->references('id')->on('medidas')->onDelete('cascade');
         });
     }
 

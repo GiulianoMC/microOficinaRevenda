@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Acabamento extends Model
 {
     // Nome da tabela (opcional se seguir a convenção)
-    protected $table = 'acabamento';
+    protected $table = 'acabamentos';
 
     // Chave primária (opcional se for 'id')
     protected $primaryKey = 'id';

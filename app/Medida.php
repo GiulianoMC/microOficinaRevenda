@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Medida extends Model
 {
     // Nome da tabela (opcional se seguir a convenção)
-    protected $table = 'medida';
+    protected $table = 'medidas';
 
     // Chave primária (opcional se for 'id')
     protected $primaryKey = 'id';

@@ -13,8 +13,8 @@ class CreateQuantidadeTable extends Migration
      */
     public function up()
     {
-        Schema::create('quantidade', function (Blueprint $table) {
-            $table->id();
+        Schema::create('quantidades', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('quantidade');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ class CreateQuantidadeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quantidade');
+        Schema::dropIfExists('quantidades');
     }
 }

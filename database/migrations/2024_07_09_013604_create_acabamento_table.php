@@ -13,8 +13,8 @@ class CreateAcabamentoTable extends Migration
      */
     public function up()
     {
-        Schema::create('acabamento', function (Blueprint $table) {
-            $table->id();
+        Schema::create('acabamentos', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('nome');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ class CreateAcabamentoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('acabamento');
+        Schema::dropIfExists('acabamentos');
     }
 }

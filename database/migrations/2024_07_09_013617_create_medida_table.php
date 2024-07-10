@@ -13,8 +13,8 @@ class CreateMedidaTable extends Migration
      */
     public function up()
     {
-        Schema::create('medida', function (Blueprint $table) {
-            $table->id();
+        Schema::create('medidas', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('medida');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ class CreateMedidaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medida');
+        Schema::dropIfExists('medidas');
     }
 }
