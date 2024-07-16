@@ -15,7 +15,7 @@ class Quantidade extends Model
     // Atributos que podem ser preenchidos em massa
     protected $fillable = ['quantidade'];
 
-    public function material()
+    public function materiais()
     {
         return $this->belongsToMany(Material::class);
     }

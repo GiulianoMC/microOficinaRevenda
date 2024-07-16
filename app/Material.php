@@ -15,17 +15,17 @@ class Material extends Model
     // Atributos que podem ser preenchidos em massa
     protected $fillable = ['nome'];
 
-    public function acabamento()
+    public function acabamentos()
     {
-        return $this->belongsToMany(Acabamento::class);
+        return $this->belongsToMany(Acabamento::class, 'material_acabamento');
     }
 
-    public function medida()
+    public function medidas()
     {
         return $this->belongsToMany(Medida::class);
     }
 
-    public function quantidade()
+    public function quantidades()
     {
         return $this->belongsToMany(Quantidade::class);
     }
