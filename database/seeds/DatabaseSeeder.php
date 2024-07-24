@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MaterialQuantidadeSeederTablePivot::class);
         $this->call(MaterialMedidaSeederTablePivot::class);
         $this->call(MaterialAcabamentoSeederTablePivot::class);
+        $this->call(PrecoSeederTable::class);
     }
 }

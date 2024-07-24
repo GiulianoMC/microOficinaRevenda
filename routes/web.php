@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AcabamentoController;
+//use App\Http\Controllers\AcabamentoController;
+use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +21,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/produtos', [ProdutoController::class, 'index']);
-Route::get('/', [AcabamentoController::class, 'index']);
+//Route::get('/', [AcabamentoController::class, 'index']);
+Route::get('/', [MaterialController::class, 'index']);
 Route::post('/calcular-preco', [ProdutoController::class, 'getPreco'])->name('calcular.preco');

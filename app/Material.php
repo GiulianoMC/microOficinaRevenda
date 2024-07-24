@@ -30,6 +30,11 @@ class Material extends Model
         return $this->belongsToMany(Quantidade::class);
     }
 
+    public function precos()
+    {
+        return $this->hasMany(Preco::class, 'material_id');
+    }
+
 }
 
 

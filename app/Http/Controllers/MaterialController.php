@@ -18,7 +18,11 @@ class MaterialController extends Controller
 
         $materiais = Material::all();
 
-        return view('/', Compact('nome'));
+        $materiais->load('quantidades', 'acabamentos', 'medidas', 'precos');
+
+        //ddd($materiais[0]->precos);
+
+        return view('home', Compact('materiais'));
     }
 
     /**
