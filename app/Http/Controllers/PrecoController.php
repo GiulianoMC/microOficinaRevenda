@@ -13,45 +13,6 @@ class PrecoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function getPreco(Request $request)
-    {
-        $validated = $request->validate([
-            'material_id' => 'required|integer|exists:materiais,id',
-            'medida_id' => 'required|integer|exists:medidas,id',
-            'quantidade_id' => 'required|integer|exists:quantidades,id',
-            'impressao' => 'nullable|string|in:F,FV',
-            'tem_acabamento' => 'nullable|string|in:S,N',
-        ]);
-    
-        // Cria a consulta inicial
-        $precoQuery = Preco::where('material_id', $validated['material_id'])
-                        ->where('medida_id', $validated['medida_id'])
-                        ->where('quantidade_id', $validated['quantidade_id']);
-    
-        // Adiciona o filtro para tem_acabamento, se presente
-        if (isset($validated['tem_acabamento'])) {
-            $precoQuery->where('tem_acabamento', $validated['tem_acabamento']);
-        }
-    
-        // Verifica se é necessário aplicar o filtro adicional para impressao
-        if (in_array($validated['material_id'], [10, 11, 12])) {
-            if (isset($validated['impressao'])) {
-                $precoQuery->where('impressao', $validated['impressao']);
-            } else {
-                return response()->json(['message' => 'Selecione um tipo de impressão'], 400);
-            }
-        }
-    
-        // Busca o preço
-        $preco = $precoQuery->first();
-    
-        if ($preco) {
-            return response()->json(['preco' => $preco->preco]);
-        } else {
-            return response()->json(['message' => 'Preço não encontrado'], 404);
-        }
-    }
-
     public function index()
     {
 
