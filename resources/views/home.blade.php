@@ -68,7 +68,7 @@
                 <select id="acabamentoSelect" style="display:none;" onchange="showMedidas()">
                     <option value="">Selecione um acabamento</option>
                     <option value="N">Sem Acabamento</option>
-                    <!-- Outros acabamentos aqui -->
+                    
                 </select>
             </div>
             
@@ -117,14 +117,14 @@
                 quantidadeInput.style.display = 'none';
                 quantidadeSelect.innerHTML = '';
                 frenteVersoSelect.style.display = (selectedMaterial.id === 10 || selectedMaterial.id === 11 || selectedMaterial.id === 12) ? 'block' : 'none';
-                dimensionInputs.style.display = 'none'; // Hide dimension inputs initially
+                dimensionInputs.style.display = 'none'; 
             } else {
                 acabamentoSelect.style.display = 'none';
                 medidaSelect.style.display = 'none';
                 quantidadeSelect.style.display = 'none';
                 quantidadeInput.style.display = 'none';
                 frenteVersoSelect.style.display = 'none';
-                dimensionInputs.style.display = 'none'; // Hide dimension inputs if no material selected
+                dimensionInputs.style.display = 'none'; 
             }
         }
 
@@ -210,10 +210,11 @@
             const widthInput = document.getElementById('larguraInput');
             const priceDisplay = document.getElementById('priceDisplay');
             const selectedMaterial = materiais.find(material => material.id == materialSelect.value);
-            const selectedMedida = selectedMaterial.id === 1 ? medidaSelect.value : (heightInput.value && widthInput.value) ? heightInput.value + 'x' + widthInput.value : null;
+            const selectedMedida = selectedMaterial.id === 1 || selectedMaterial.id === 2 || selectedMaterial.id === 10 || selectedMaterial.id === 11 || selectedMaterial.id === 12 ? medidaSelect.value : (heightInput.value && widthInput.value) ? heightInput.value + 'x' + widthInput.value : null;
             const quantidadeId = quantidadeSelect.value || quantidadeInput.value;
             const selectedAcabamento = acabamentoSelect.options[acabamentoSelect.selectedIndex].text;
             const temAcabamento = (selectedAcabamento === 'Sem Acabamento') ? 'N' : 'S';
+            const frenteVersoValue = frenteVersoSelect.value;
 
             if (selectedMaterial) {
                 let preco = null;
@@ -226,30 +227,28 @@
                     preco = selectedMaterial.precos.find(preco => preco.tem_acabamento == temAcabamento);
                 } else if (selectedMaterial.id === 5) {
                     preco = selectedMaterial.precos.find(preco => preco.tem_acabamento);
-                }
-
-                if (frenteVersoSelect.style.display === 'block') {
-                    preco = preco && preco.tipo_acabamento == frenteVersoSelect.value ? preco : null;
+                } else if ([10, 11, 12].includes(selectedMaterial.id)) {
+                    preco = selectedMaterial.precos.find(preco => preco.tem_acabamento == temAcabamento && preco.medida_id == selectedMedida && preco.impressao == frenteVersoValue);
+                    console.log(preco);
                 }
 
                 if (preco) {
                     let totalPreco = preco.preco;
 
                     if ([3, 4, 5, 6, 7, 8, 9].includes(selectedMaterial.id)) {
-                        // Calculate area in square meters
                         const height = parseFloat(heightInput.value) || 0;
                         const width = parseFloat(widthInput.value) || 0;
-                        const area = (height * width) / 10000; // Convert cm² to m²
+                        const area = (height * width) / 10000; // Convertendo cm² para m²
 
                         if (!isNaN(area) && area > 0) {
-                            totalPreco *= area; // Price per square meter times area
+                            totalPreco *= area;
                         }
                     }
 
-                    if (!quantidadeSelect.value) { // If manual quantity input is used
+                    if (!quantidadeSelect.value) { // Se não há quantidade selecionada
                         const quantity = parseFloat(quantidadeInput.value);
                         if (!isNaN(quantity) && quantity > 0) {
-                            totalPreco *= quantity; // Total price times quantity
+                            totalPreco *= quantity;
                         }
                     }
 
@@ -261,6 +260,7 @@
                 priceDisplay.textContent = 'Selecione um material';
             }
         }
+
 
 
 

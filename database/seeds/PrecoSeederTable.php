@@ -1236,6 +1236,54 @@ class PrecoSeederTable extends Seeder
                 "material_id" => 9,
                 "medida_id" => null,
                 "quantidade_id" => null
+            ],
+            [
+                "id" => 103,
+                "impressao" => "F",
+                "tem_acabamento" => "N",
+                "tipo_acabamento" => "",
+                "preco" => 210.0,
+                "created_at" => null,
+                "updated_at" => null,
+                "material_id" => 10,
+                "medida_id" => 20,
+                "quantidade_id" => null
+            ],
+            [
+                "id" => 104,
+                "impressao" => "F",
+                "tem_acabamento" => "S",
+                "tipo_acabamento" => "",
+                "preco" => 270.0,
+                "created_at" => null,
+                "updated_at" => null,
+                "material_id" => 10,
+                "medida_id" => 20,
+                "quantidade_id" => null
+            ],
+            [
+                "id" => 105,
+                "impressao" => "FV",
+                "tem_acabamento" => "N",
+                "tipo_acabamento" => "",
+                "preco" => 270.0,
+                "created_at" => null,
+                "updated_at" => null,
+                "material_id" => 10,
+                "medida_id" => 20,
+                "quantidade_id" => null
+            ],
+            [
+                "id" => 106,
+                "impressao" => "FV",
+                "tem_acabamento" => "S",
+                "tipo_acabamento" => "",
+                "preco" => 352.0,
+                "created_at" => null,
+                "updated_at" => null,
+                "material_id" => 10,
+                "medida_id" => 20,
+                "quantidade_id" => null
             ]
         ];
 
